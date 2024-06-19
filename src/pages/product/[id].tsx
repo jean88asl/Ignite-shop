@@ -65,7 +65,7 @@ export default function Product({ product }: ProductProps) {
         </>
     )
 }
-// Nesse caso como a página depende de um parâmetro dinâmico, utilizamos esse método para ter acesso as informações que não são estáticas passando o path de um produto prod_QHYL8IzofHcAbR
+
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
         paths: [
@@ -77,12 +77,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
 }
 
-// essa página apesar optarmos por utilizar o SSG, temos que receber o parâmetro, pois existem vários produtos. Para isso podemos desestruturar os params e pegar o que queremos
 export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ params }) => {
     const productId = params?.id ? params.id : ""
     // diferente de como vimos na home, não vai retornar uma lista, mas apenas um produto
     const product = await stripe.products.retrieve(productId, {
-        // como é apenas um produto conseguimos pegar apenas o dado que queremos
         expand: ['default_price']
     })
 

@@ -2,7 +2,6 @@ import { stripe } from "../../lib/stripe";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    // Esse priceId será utilizado na sessão abaixo, ele vem diretamente da página relacionada ao produto
     const { priceId } = req.body
     // inibindo retorno para outros métodos que não sejam o post
     if (req.method !== 'POST') {
@@ -22,7 +21,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         cancel_url: cancelUrl,
         // criando o pagamento
         mode: 'subscription',
-        // array que tem várias informações do produto. Essas informações poderiam ser carregadas no nosso lado, mas o Stripe tem uma forma de saber as informações que é o ID do preço, que é uma entidade diferente do produto em si, pois no stripe podemos cadastrar mais de um preço, isso é interessante pois podemos atribuir preços diferentes para se o usuário quiser comprar 5 camisetas, por exemplo.
         line_items: [
             {
                 price: priceId,

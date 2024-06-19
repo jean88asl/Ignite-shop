@@ -3,7 +3,7 @@ import { styled } from "..";
 export const ProductContainer = styled('main', {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
-    // fazendo com que as colunas tenha a mesma altura
+    // fazendo que as colunas tenha a mesma altura
     alignItems: 'stretch',
     gap: '4rem',
     maxWidth: 1180,

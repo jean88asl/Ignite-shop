@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     })
     // pegando o nome do cliente que efetuou a compra
     const customerName = session.customer_details.name
-    // Não é o nosso caso, mas pode ser efetuada a compra de vários produtos de uma vez só, mas como nesse caso é só pegamos apenas a primeira posição do array e utilizamos a tipagem do próprio stripe para 
+    
     const product = session.line_items.data[0].price.product as Stripe.Product
     console.log(product.images[0])
 
