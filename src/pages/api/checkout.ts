@@ -2,7 +2,9 @@ import { stripe } from "../../lib/stripe";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { priceId } = req.body
+    const { priceId, quantityItem } = req.body
+
+    console.log(quantityItem)
     // inibindo retorno para outros métodos que não sejam o post
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' })
@@ -25,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             {
                 price: priceId,
                 // quantidade que está sendo comprada.
-                quantity: 1
+                quantity: quantityItem
             }
         ]
     })
